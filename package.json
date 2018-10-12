@@ -1,0 +1,28 @@
+{
+  "name": "telkomapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/handharbeni/TelkomApi.git"
+  },
+  "author": "beni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/handharbeni/TelkomApi/issues"
+  },
+  "homepage": "https://github.com/handharbeni/TelkomApi#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.3",
+    "express": "^4.16.4",
+    "helmet": "^3.14.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongodb": "^3.1.8",
+    "mongoose": "^5.3.2"
+  }
+}
