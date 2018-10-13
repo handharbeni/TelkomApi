@@ -11,7 +11,9 @@ function verifyToken(req, res, next) {
   jwt.verify(token, config.secret, function(err, decoded) {
     if (err) res.status(203).send({ auth: false, message: 'Failed to authenticate token.' });
     var userId = decoded.id;
-    User.findOne({ _id: userId },
+    var filtering = { _id: userId };
+    var projection = {password: 0};
+    User.findOne(filtering, projection,
         function (err, user) {
           if (err) return res.status(201).send({ auth: false, message: 'There was a problem finding the user.' });
           if (!user) return res.status(201).send({ auth: false, message: 'No user found.' });
