@@ -1,5 +1,6 @@
-# TelkomApi
+## TelkomApi
 
+> Response Code
 
 # 200 OK (All)
 # 201 No Auth
@@ -13,5 +14,15 @@
 # 504 Problem Selecting
 
 # 600 Problem Server
+
+
+
+
+> Build apps
+
+- Clone this repo
+- npm install
+- node server.js
+- apps will be ready on 9876
 
 Work with Logic
