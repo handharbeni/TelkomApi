@@ -7,9 +7,11 @@
 # 203 Token Invalid
 
 
-# Problem Inserting 501
-# Problem Updating 502
-# Problem Deleting 503
-# Problem Selecting 504
+# 501 Problem Inserting
+# 502 Problem Updating
+# 503 Problem Deleting
+# 504 Problem Selecting
 
-# Problem Server 600
+# 600 Problem Server
+
+Work with Logic
