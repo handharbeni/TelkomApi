@@ -20,9 +20,9 @@
 
 > Build apps
 
-- Clone this repo
-- npm install
-- node server.js
-- apps will be ready on 9876
+# Clone this repo
+# npm install
+# node server.js
+# apps will be ready on 9876
 
 Work with Logic
