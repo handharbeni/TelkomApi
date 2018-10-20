@@ -8,12 +8,12 @@
 # 203 Token Invalid
 
 
-# 501 Problem Inserting
-# 502 Problem Updating
-# 503 Problem Deleting
-# 504 Problem Selecting
+# 401 Problem Inserting
+# 402 Problem Updating
+# 403 Problem Deleting
+# 404 Problem Selecting
 
-# 600 Problem Server
+# 500 Problem Server
 
 
 
