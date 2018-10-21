@@ -1,5 +1,5 @@
 'use strict';
-var multer  = require('multer')
+var multer  = require('multer');
 
 var storageThumbnail = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -99,6 +99,13 @@ module.exports = function(app) {
         .get(verifyToken, controllers.getThumbs)
         .put(controllers.restriction)
         .delete(controllers.restriction);
+
+    /**
+     * Field --
+     * id
+     */
+    app.route('/viewFiles/:idFiles')
+        .get(controllers.viewFiles);
 
 
 }

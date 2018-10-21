@@ -6,7 +6,10 @@ var config = require('../../utils/config');
 var User = require('../../module/models/User');
 var Thumbnails = require('../../module/models/Thumbnails');
 var Files = require('../../module/models/Files');
-
+var fs = require('fs');
+var mime = require('mime-types');
+// var readChunk = require('read-chunk');
+// var fileType = require('file-type');
 
 exports.test = function(req, res){
     res.status(200).send({'results':'empty'});
@@ -78,6 +81,20 @@ exports.getFiles = function(req, res, next){
         res.status(200).send({auth: true, message:results});
     });
 }
+
+exports.viewFiles = function(req, res){
+    const url = require('url');
+    const fileUrl = require('file-url');
+    Files.findOne({_id: req.params.idFiles}, function(err, results){
+        const myURL = url.parse(fileUrl(results.path));
+        fs.readFile(myURL.path, (err, data) => {
+            if(err) return res.status(404).send({auth:true, message:'Failed to get Files'});
+            res.writeHead(200, {'Content-Type': mime.lookup(myURL.path)});
+            res.end(data);
+        });    
+    });
+}
+
 exports.getThumbs = function(req, res, next){
     Thumbnails.find({idUser: req.userId}, function(err, results){
         if(err) return res.status(404).send({auth:true, message:'Failed to get Thumbs'});
