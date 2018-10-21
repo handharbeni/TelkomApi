@@ -3,78 +3,160 @@ HOST: http://polls.apiblueprint.org/
 
 # mhandharbeni
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Telkomsel API
 
-## Questions Collection [/questions]
+## Login [/login]
 
-### List All Questions [GET]
+### Login [POST]
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
+                "auth": true,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViY2I1ZDJkZTMzZjAyMjIwZGVkYjFiMyIsImlhdCI6MTU0MDEzMzc4OSwiZXhwIjoxNTQwMjIwMTg5fQ.i6l1WiAwiqVQYw_2SfdAYwApuUUI6rl372Y1i-pYKtU"
+            }
+        ]
+## Register [/register]
+
+### Register [POST]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "auth": true,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViY2I1ZDJkZTMzZjAyMjIwZGVkYjFiMyIsImlhdCI6MTU0MDEzMzc4OSwiZXhwIjoxNTQwMjIwMTg5fQ.i6l1WiAwiqVQYw_2SfdAYwApuUUI6rl372Y1i-pYKtU"
             }
         ]
 
-### Create a New Question [POST]
+## Me [/me]
+
+### Me [GET]
 
 You may create your own question using this action. It takes a JSON
 object containing a question and a collection of answers in the
 form of choices.
 
-+ Request (application/json)
++ Request (application/x-www-form-urlencoded)
+    access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViY2M5M2Y3MDExNjU2NWE1ZmFiODYxOCIsImlhdCI6MTU0MDEzMzg4MCwiZXhwIjoxNTQwMjIwMjgwfQ.I52QJZdu7gFo1UjMQhoiWKjS3DdaS-mbh49XsRo69Tw
+
++ Response 201 (application/json)
+    + Body
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
+            "auth": true,
+            "message": {
+                "email": "mhandharbeni@gmail.com",
+                "name": "beni",
+                "phone": "081556617741"
+            }
+        }
+
+## Files [/files]
+
+### Files [GET]
+
+Getting All Files User Uploaded
+
++ Request (multipart/form-data)
+    + Header
+        access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViY2M5M2Y3MDExNjU2NWE1ZmFiODYxOCIsImlhdCI6MTU0MDEzMzg4MCwiZXhwIjoxNTQwMjIwMjgwfQ.I52QJZdu7gFo1UjMQhoiWKjS3DdaS-mbh49XsRo69Tw
+
++ Response 200 (application/json)
+    + Body
+
+        {
+            "auth": true,
+            "message": [
+                {
+                    "_id": "5bcc95ca9960a65bc12a2802",
+                    "idUser": "5bcc93f70116565a5fab8618",
+                    "path": "/home/mhandharbeni/Documents/PROJECT/Irtak/telkom/TelkomApi/uploads/files/1540134346607-BANNER2.jpg",
+                    "date": "1540134346626",
+                    "__v": 0
+                },
+                {
+                    "_id": "5bcc95cc9960a65bc12a2803",
+                    "idUser": "5bcc93f70116565a5fab8618",
+                    "path": "/home/mhandharbeni/Documents/PROJECT/Irtak/telkom/TelkomApi/uploads/files/1540134348119-BANNER2.jpg",
+                    "date": "1540134348141",
+                    "__v": 0
+                },
+                {
+                    "_id": "5bcc95cd9960a65bc12a2804",
+                    "idUser": "5bcc93f70116565a5fab8618",
+                    "path": "/home/mhandharbeni/Documents/PROJECT/Irtak/telkom/TelkomApi/uploads/files/1540134349128-BANNER2.jpg",
+                    "date": "1540134349155",
+                    "__v": 0
+                }
             ]
         }
 
-+ Response 201 (application/json)
+### Files [POST]
 
-    + Headers
+Upload files
 
-            Location: /questions/2
++ Request (multipart/form-data)
+    + Header
+        access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViY2M5M2Y3MDExNjU2NWE1ZmFiODYxOCIsImlhdCI6MTU0MDEzMzg4MCwiZXhwIjoxNTQwMjIwMjgwfQ.I52QJZdu7gFo1UjMQhoiWKjS3DdaS-mbh49XsRo69Tw
 
     + Body
+        files : <the files>
 
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+
++ Response 200 (application/json)
+    + Body
+
+        {
+            "auth": true,
+            "message": "Upload Success"
+        }
+
+
+## Thumbnails [/thumbnails]
+
+### Thumbnails [GET]
+
+Getting All Thumbnails User Uploaded
+
++ Request (multipart/form-data)
+    + Header
+        access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViY2M5M2Y3MDExNjU2NWE1ZmFiODYxOCIsImlhdCI6MTU0MDEzMzg4MCwiZXhwIjoxNTQwMjIwMjgwfQ.I52QJZdu7gFo1UjMQhoiWKjS3DdaS-mbh49XsRo69Tw
+
++ Response 200 (application/json)
+    + Body
+
+        {
+            "auth": true,
+            "message": [
+                {
+                    "_id": "5bcc96c99960a65bc12a2806",
+                    "idUser": "5bcc93f70116565a5fab8618",
+                    "path": "/home/mhandharbeni/Documents/PROJECT/Irtak/telkom/TelkomApi/uploads/thumbnails/1540134601383-photo_2018-09-25_06-21-24.jpg",
+                    "date": "1540134601385",
+                    "__v": 0
+                }
+            ]
+        }
+
+        
+### Files [POST]
+
+Upload files
+
++ Request (multipart/form-data)
+    + Header
+        access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViY2M5M2Y3MDExNjU2NWE1ZmFiODYxOCIsImlhdCI6MTU0MDEzMzg4MCwiZXhwIjoxNTQwMjIwMjgwfQ.I52QJZdu7gFo1UjMQhoiWKjS3DdaS-mbh49XsRo69Tw
+
+    + Body
+        files : <the files>
+
+
++ Response 200 (application/json)
+    + Body
+
+        {
+            "auth": true,
+            "message": "Upload Success"
+        }

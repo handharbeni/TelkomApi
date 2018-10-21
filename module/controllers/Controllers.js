@@ -46,7 +46,7 @@ exports.signin = function(req, res){
 exports.me = function(req, res, next){
     res.status(200).send({
         auth: true,
-        message: req.userId
+        message: req.body
     });
 }
 
