@@ -106,6 +106,8 @@ module.exports = function(app) {
      */
     app.route('/viewFiles/:idFiles')
         .get(controllers.viewFiles);
+    app.route('/viewThumbnails/:idThumbnails')
+        .get(controllers.viewThumbnails);
 
 
 }

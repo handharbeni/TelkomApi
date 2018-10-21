@@ -95,6 +95,19 @@ exports.viewFiles = function(req, res){
     });
 }
 
+exports.viewThumbnails = function(req, res){
+    const url = require('url');
+    const fileUrl = require('file-url');
+    Thumbnails.findOne({_id: req.params.idThumbnails}, function(err, results){
+        const myURL = url.parse(fileUrl(results.path));
+        fs.readFile(myURL.path, (err, data) => {
+            if(err) return res.status(404).send({auth:true, message:'Failed to get Files'});
+            res.writeHead(200, {'Content-Type': mime.lookup(myURL.path)});
+            res.end(data);
+        });    
+    });
+}
+
 exports.getThumbs = function(req, res, next){
     Thumbnails.find({idUser: req.userId}, function(err, results){
         if(err) return res.status(404).send({auth:true, message:'Failed to get Thumbs'});
