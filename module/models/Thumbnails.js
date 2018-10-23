@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 // var db = require('../../utils/db');
 var ThumbnailsSchema = new mongoose.Schema({
   idUser: String,
-  path: String,
-  date: String
+  Path: String,
+  Date: String
 });
 mongoose.model('Thumbnails', ThumbnailsSchema);
 

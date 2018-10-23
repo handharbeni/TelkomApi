@@ -29,7 +29,7 @@ module.exports = function(app) {
      * Content-Type = application/x-www-form-urlencoded
      * 
      * Field --
-     * phone number
+     * phone
      * name
      * email
      * password
@@ -44,7 +44,7 @@ module.exports = function(app) {
      * Content-Type = application/x-www-form-urlencoded
      * 
      * Field --
-     * phone number
+     * phone
      * password
      */
     app.route('/login')
@@ -100,13 +100,21 @@ module.exports = function(app) {
         .put(controllers.restriction)
         .delete(controllers.restriction);
 
+    
+    app.route('/blog')
+        .get(controllers.getBlog)
+        .post(controllers.saveBlog)
+        .put(controllers.restriction)
+        .delete(controllers.restriction);
+
+
     /**
      * Field --
      * id
      */
-    app.route('/viewFiles/:idFiles')
+    app.route('/files/:idFiles')
         .get(controllers.viewFiles);
-    app.route('/viewThumbnails/:idThumbnails')
+    app.route('/thumbnails/:idThumbnails')
         .get(controllers.viewThumbnails);
 
 

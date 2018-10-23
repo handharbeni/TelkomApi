@@ -1,13 +1,22 @@
 'use strict';
+/**
+ * Utils, Library
+ */
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var db = require('../../utils/db');
 var config = require('../../utils/config');
-var User = require('../../module/models/User');
-var Thumbnails = require('../../module/models/Thumbnails');
 var Files = require('../../module/models/Files');
 var fs = require('fs');
 var mime = require('mime-types');
+
+/**
+ * Model
+ */
+var User = require('../../module/models/User');
+var Thumbnails = require('../../module/models/Thumbnails');
+var Blog = require('../../module/models/Blog');
+
 // var readChunk = require('read-chunk');
 // var fileType = require('file-type');
 
@@ -54,9 +63,10 @@ exports.me = function(req, res, next){
 }
 
 exports.uploadFile = function(req, res, next){
+    // var paths = (process.cwd()+"/"+req.file.path).replace(/\\/g,"/")
     Files.create({
         idUser: req.userId,
-        path: '/home/mhandharbeni/Documents/PROJECT/Irtak/telkom/TelkomApi/'+req.file.path,
+        path: (req.file.path).replace(/\\/g,"/"),
         date: Date.now()
     }, function(err, file){
         if(err) return res.status(500).send({auth:true, message:err});
@@ -67,7 +77,7 @@ exports.uploadFile = function(req, res, next){
 exports.uploadThumbnails = function(req, res, next){
     Thumbnails.create({
         idUser: req.userId,
-        path: '/home/mhandharbeni/Documents/PROJECT/Irtak/telkom/TelkomApi/'+req.file.path,
+        path: (req.file.path).replace(/\\/g,"/"),
         date: Date.now()
     }, function (err, thumbs){
         if(err) return res.status(500).send({auth:true, message:err});
@@ -87,9 +97,10 @@ exports.viewFiles = function(req, res){
     const fileUrl = require('file-url');
     Files.findOne({_id: req.params.idFiles}, function(err, results){
         const myURL = url.parse(fileUrl(results.path));
-        fs.readFile(myURL.path, (err, data) => {
+        // const filePath = (myURL.href).replace(/\\/g,"/");
+        fs.readFile(results.path, (err, data) => {
             if(err) return res.status(404).send({auth:true, message:'Failed to get Files'});
-            res.writeHead(200, {'Content-Type': mime.lookup(myURL.path)});
+            res.writeHead(200, {'Content-Type': mime.lookup(results.path)});
             res.end(data);
         });    
     });
@@ -99,10 +110,10 @@ exports.viewThumbnails = function(req, res){
     const url = require('url');
     const fileUrl = require('file-url');
     Thumbnails.findOne({_id: req.params.idThumbnails}, function(err, results){
-        const myURL = url.parse(fileUrl(results.path));
-        fs.readFile(myURL.path, (err, data) => {
+        // const myURL = url.parse(fileUrl(results.path));
+        fs.readFile(results.path, (err, data) => {
             if(err) return res.status(404).send({auth:true, message:'Failed to get Files'});
-            res.writeHead(200, {'Content-Type': mime.lookup(myURL.path)});
+            res.writeHead(200, {'Content-Type': mime.lookup(results.path)});
             res.end(data);
         });    
     });
@@ -114,6 +125,40 @@ exports.getThumbs = function(req, res, next){
         res.status(200).send({auth: true, message:results});
     });
 }
+
+
+exports.saveBlog = function(req, res, next){
+    var property = {
+        Title: req.body.title,
+        Description: req.body.description,
+        Content: req.body.content,
+        Date: Date.now(),
+        DateModified: Date.now(),
+        Thumbnails: req.body.thumbnails,
+        IdUser: req.userId
+    };
+
+    Blog.findOne(property, function(err, results){
+        if(err) return res.status(404).send({auth:true, message:'Failed to get Blog'});
+        if(results){
+            res.status(404).send({auth:true, message:'Blog Already On This Scope'});
+        }else{
+            Blog.create(property, function(err, success){
+                if(err) return res.status(404).send({auth:true, message:'Failed to get Blog'});
+
+                res.status(200).send({auth:true, message:'Blog Saved'})
+            });
+        }
+    });
+}
+
+exports.getBlog = function(req, res, next){
+    Blog.find({}, function(err, results){
+        if(err) return res.status(404).send({auth:true, message:'Failed to get Blogs'});
+        res.status(200).send({auth: true, message:results});
+    });
+}
+
 exports.signout = function(req, res){
     res.status(200).send({ auth: false, token: null });
 }
