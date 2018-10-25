@@ -22,7 +22,7 @@
 
 # Clone this repo
 # npm install
-# node server.js
+# npm start server.js
 # apps will be ready on 9876
 
-Work with Logic
+Work with LOveGIC
