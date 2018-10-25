@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2018-10-25T18:47:23.024Z",
+	"__export_date": "2018-10-25T18:55:32.219Z",
 	"__export_source": "insomnia.desktop.app:v6.0.2",
 	"resources": [
 		{
@@ -76,9 +76,9 @@
 				}
 			],
 			"isPrivate": false,
-			"metaSortKey": -1539362714816,
+			"metaSortKey": -1540492386831,
 			"method": "POST",
-			"modified": 1540492375461,
+			"modified": 1540493393969,
 			"name": "Register",
 			"parameters": [],
 			"parentId": "wrk_19e0ecf31777410da661901963165b88",
@@ -121,9 +121,9 @@
 				}
 			],
 			"isPrivate": false,
-			"metaSortKey": -1539362714766,
+			"metaSortKey": -1540492386781,
 			"method": "POST",
-			"modified": 1540492437447,
+			"modified": 1540493391215,
 			"name": "Login",
 			"parameters": [],
 			"parentId": "wrk_19e0ecf31777410da661901963165b88",
@@ -162,7 +162,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1539362714716,
 			"method": "GET",
-			"modified": 1540493162255,
+			"modified": 1540493678828,
 			"name": "Blog (Blog)",
 			"parameters": [],
 			"parentId": "wrk_19e0ecf31777410da661901963165b88",
@@ -201,7 +201,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1539362714666,
 			"method": "GET",
-			"modified": 1540493167621,
+			"modified": 1540493674157,
 			"name": "Blog (Video)",
 			"parameters": [],
 			"parentId": "wrk_19e0ecf31777410da661901963165b88",
@@ -322,7 +322,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1539927550773.5,
 			"method": "GET",
-			"modified": 1540492918343,
+			"modified": 1540493683043,
 			"name": "Get Files (Need Token)",
 			"parameters": [],
 			"parentId": "wrk_19e0ecf31777410da661901963165b88",
@@ -359,7 +359,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1539645132794.75,
 			"method": "GET",
-			"modified": 1540492870942,
+			"modified": 1540493682053,
 			"name": "View Files",
 			"parameters": [],
 			"parentId": "wrk_19e0ecf31777410da661901963165b88",
@@ -369,7 +369,7 @@
 			"settingRebuildPath": true,
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
-			"url": "localhost:9876/files/5bd20d7a9209a21494a0fb6d",
+			"url": "localhost:9876/files/5bd205f6237cbc1408ac6f3e",
 			"_type": "request"
 		},
 		{
@@ -441,7 +441,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1539786341784.125,
 			"method": "GET",
-			"modified": 1540492924822,
+			"modified": 1540493682643,
 			"name": "Get Thumbnails (Need Token)",
 			"parameters": [],
 			"parentId": "wrk_19e0ecf31777410da661901963165b88",
@@ -478,7 +478,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1539503923805.375,
 			"method": "GET",
-			"modified": 1540493048085,
+			"modified": 1540493681651,
 			"name": "View Thumbnails",
 			"parameters": [],
 			"parentId": "wrk_19e0ecf31777410da661901963165b88",
@@ -500,17 +500,17 @@
 					{
 						"id": "pair_00dbc4ce5af6485f82f1f24eae0166e6",
 						"name": "title",
-						"value": "Title Blog"
+						"value": "Title Video"
 					},
 					{
 						"id": "pair_277fbf55b5d34e1580e50567dbb6d6f3",
 						"name": "description",
-						"value": "Description of Blog"
+						"value": "Description of Video"
 					},
 					{
 						"id": "pair_9259fca60aeb406680c3cad4256a2aa7",
 						"name": "content",
-						"value": "html here"
+						"value": "html video here"
 					},
 					{
 						"id": "pair_130d89af306641e4a9e9c61e385eb953",
@@ -525,12 +525,12 @@
 					{
 						"id": "pair_b5819d1f7cb2455687c9563ec8522880",
 						"name": "thumbnails",
-						"value": "localhost:9876/thumbnails/5bd20dfa9209a21494a0fb6e"
+						"value": "localhost:9876/files/5bd205f6237cbc1408ac6f3e"
 					},
 					{
 						"id": "pair_3d671c5ff5fe44d59d13eb899c0a04ca",
 						"name": "type",
-						"value": "blog"
+						"value": "video"
 					}
 				]
 			},
@@ -549,9 +549,9 @@
 				}
 			],
 			"isPrivate": false,
-			"metaSortKey": -1539433319310.6875,
+			"metaSortKey": -1539362714728.5,
 			"method": "POST",
-			"modified": 1540493104290,
+			"modified": 1540493662622,
 			"name": "Save Blog (Need Token)",
 			"parameters": [],
 			"parentId": "wrk_19e0ecf31777410da661901963165b88",
