@@ -100,10 +100,22 @@ module.exports = function(app) {
         .put(controllers.restriction)
         .delete(controllers.restriction);
 
-    
+    /**
+     * Saving Blog
+     */
     app.route('/blog')
-        .get(controllers.getBlog)
+        .get(controllers.restriction)
         .post(controllers.saveBlog)
+        .put(controllers.restriction)
+        .delete(controllers.restriction);
+
+    /**
+     * Get Blog Base On Type
+     * Blog, Video
+     */
+    app.route('/blog/:type')
+        .get(controllers.getBlog)
+        .post(controllers.restriction)
         .put(controllers.restriction)
         .delete(controllers.restriction);
 

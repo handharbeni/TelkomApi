@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 // var db = require('../../utils/db');
 var FilesSchema = new mongoose.Schema({
   idUser: String,
-  Path: String,
-  Date: String
+  path: String,
+  date: String
 });
 mongoose.model('Files', FilesSchema);
 

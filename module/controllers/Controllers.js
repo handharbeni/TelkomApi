@@ -41,6 +41,8 @@ exports.signup = function(req, res){
 }
 exports.signin = function(req, res){
     User.findOne({ phone: req.body.phone }, function (err, user) {
+        // console.log(user.email);
+
         if (err) return res.status(500).send({ auth: false, token: 'Error on the server.' });
         if (!user) return res.status(404).send({ auth: false, token: 'No user found.' });
 
@@ -56,10 +58,14 @@ exports.signin = function(req, res){
 }
 
 exports.me = function(req, res, next){
-    res.status(200).send({
-        auth: true,
-        message: req.body
+    User.findOne({ _id: req.userId }, function(err, results){
+        if (err) return res.status(500).send({ auth: false, token: 'Error on the server.' });
+        res.status(200).send({ auth: true, message: results });
     });
+    // res.status(200).send({
+    //     auth: true,
+    //     message: req.body
+    // });
 }
 
 exports.uploadFile = function(req, res, next){
@@ -96,8 +102,10 @@ exports.viewFiles = function(req, res){
     const url = require('url');
     const fileUrl = require('file-url');
     Files.findOne({_id: req.params.idFiles}, function(err, results){
-        const myURL = url.parse(fileUrl(results.path));
+        // const myURL = url.parse(fileUrl(results.path));
         // const filePath = (myURL.href).replace(/\\/g,"/");
+        if(err) return res.status(404).send({auth:none, message:'Failed to get Files'});
+        // console.log(results);
         fs.readFile(results.path, (err, data) => {
             if(err) return res.status(404).send({auth:true, message:'Failed to get Files'});
             res.writeHead(200, {'Content-Type': mime.lookup(results.path)});
@@ -129,13 +137,14 @@ exports.getThumbs = function(req, res, next){
 
 exports.saveBlog = function(req, res, next){
     var property = {
-        Title: req.body.title,
-        Description: req.body.description,
-        Content: req.body.content,
-        Date: Date.now(),
-        DateModified: Date.now(),
-        Thumbnails: req.body.thumbnails,
-        IdUser: req.userId
+        title: req.body.title,
+        description: req.body.description,
+        content: req.body.content,
+        date: Date.now(),
+        dateModified: Date.now(),
+        thumbnails: req.body.thumbnails,
+        type: req.body.type,
+        idUser: req.userId
     };
 
     Blog.findOne(property, function(err, results){
@@ -153,7 +162,10 @@ exports.saveBlog = function(req, res, next){
 }
 
 exports.getBlog = function(req, res, next){
-    Blog.find({}, function(err, results){
+    var property = {
+        type: req.params.type
+    }
+    Blog.find(property, function(err, results){
         if(err) return res.status(404).send({auth:true, message:'Failed to get Blogs'});
         res.status(200).send({auth: true, message:results});
     });
