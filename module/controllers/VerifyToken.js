@@ -9,7 +9,7 @@ function verifyToken(req, res, next) {
   var token = req.headers['access-token'];
   if (!token) return res.status(201).send({ auth: false, message: 'No token provided.' });
   jwt.verify(token, config.secret, function(err, decoded) {
-    if (err) res.status(203).send({ auth: false, message: 'Failed to authenticate token.' });
+    if (err) return res.status(203).send({ auth: false, message: 'Failed to authenticate token.' });
     var userId = decoded.id;
     var filtering = { _id: userId };
     var projection = {password: 0};

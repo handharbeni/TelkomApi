@@ -1,7 +1,7 @@
 var compression = require('compression');
 var helmet = require('helmet');
-var swaggerUi = require('swagger-ui-express'),
-    swaggerDocument = require('./swagger.json');
+// var swaggerUi = require('swagger-ui-express'),
+    // swaggerDocument = require('./swagger.json');
 
 var express = require('express'),
   app = express(),
