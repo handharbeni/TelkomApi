@@ -26,6 +26,7 @@
     "file-url": "^2.0.2",
     "fs": "0.0.1-security",
     "helmet": "^3.14.0",
+    "html-parse-stringify": "^1.0.3",
     "jsonwebtoken": "^8.3.0",
     "mime-types": "^2.1.21",
     "mongodb": "^3.1.8",
